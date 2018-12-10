@@ -15,8 +15,13 @@ export default new Router({
       component: Home
     },
     {
-      path: '/edit',
+      path: '/edit/:id',
       name: 'edit',
+      component: Edit
+    },
+    {
+      path: '/create',
+      name: 'create',
       component: Edit
     }
   ]

@@ -4,7 +4,7 @@
     <h3>first project node - vue by Lai</h3>
     <b-nav tabs>
       <b-nav-item to="/" exact>Home</b-nav-item>
-      <b-nav-item to="/edit">Create</b-nav-item>
+      <b-nav-item to="/create">Create</b-nav-item>
     </b-nav>
     <router-view/>
   </div>

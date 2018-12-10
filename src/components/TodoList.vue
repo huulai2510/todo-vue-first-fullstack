@@ -11,7 +11,12 @@
     </template>
     <template slot="option" slot-scope="data">
       <b-button variant="outline-danger" class="mr-2" @click="deleteTodo(data.item)">Delete</b-button>
-      <b-button variant="outline-primary">Edit</b-button>
+      <b-button
+        variant="outline-primary"
+        :to="{name: 'edit', params:{id: data.item.id}}"
+      >
+        Edit
+      </b-button>
     </template>
   </b-table>
 </template>

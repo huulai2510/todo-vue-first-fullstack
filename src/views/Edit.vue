@@ -24,6 +24,14 @@ export default {
       description: ""
     }
   },
+  computed: {
+    todoId() {
+      return this.$route.params.id
+    },
+    todos() {
+      return this.$store.getters.todos
+    }
+  },
   methods: {
     clearTodo() {
       this.title = "";
@@ -31,7 +39,28 @@ export default {
     },
     submitTodo() {
       let { title, description } = this;
-      this.$store.dispatch("submitTodo", {title, description})
+      let params = {
+        title,
+        description
+      }
+      if(this.todoId) {
+        params.id = this.todoId
+      }
+      this.$store.dispatch("submitTodo", params)
+    }
+  },
+  created() {
+    try {
+      if(this.todoId) {
+        let idx = this.todos.findIndex(item => {
+          return item.id == this.todoId
+        })
+        this.title = this.todos[idx].title
+        this.description = this.todos[idx].description
+      }
+    } catch (error) {
+      // eslint-disable-next-line 
+      console.log(error)
     }
   }
 }

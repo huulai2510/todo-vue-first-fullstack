@@ -42,12 +42,21 @@ export default new Vuex.Store({
         row: state.row,
         pageId: Math.ceil(state.total/state.row)
       }
-      axios
-        .post('http://localhost:3000/todos', payload, headers)
-        .then(() => {
-          dispatch("getTodos", paramsGet)
-        })
-        .catch()
+      if(payload.id) {
+        axios
+          .put(`http://localhost:3000/todos/${payload.id}`, payload, headers)
+          .then(() => {
+            dispatch("getTodos", paramsGet)
+          })
+          .catch()
+      } else {
+        axios
+          .post('http://localhost:3000/todos', payload, headers)
+          .then(() => {
+            dispatch("getTodos", paramsGet)
+          })
+          .catch()
+      }
     },
     deleteTodo({dispatch, state}, payload) {
       let paramsGet = {
